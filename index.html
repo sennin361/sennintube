@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>仙人チューブ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="manifest" href="manifest.json" />
+  <script>
+    // サービスワーカー登録
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log('Service Worker registered'));
+    }
+
+    // チャット画面表示
+    function showChat() {
+      document.getElementById('top-bar').style.display = 'none';
+      document.getElementById('main-content').innerHTML = `
+        <div style="position: fixed; top: 10px; left: 10px; z-index: 1000;">
+          <button onclick="location.reload()">ホーム</button>
+        </div>
+        <iframe src="https://senninsystems.onrender.com" 
+                style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; border: none; z-index: 999;">
+        </iframe>
+      `;
+    }
+
+    // Snowrider ゲーム表示
+    function playGame() {
+      document.getElementById('top-bar').style.display = 'none';
+      document.getElementById('main-content').innerHTML = `
+        <div style="position: fixed; top: 10px; left: 10px; z-index: 1000;">
+          <button onclick="location.reload()">ホーム</button>
+        </div>
+        <iframe src="https://wkt-uuiv.onrender.com/game/games/snowrider" 
+                style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; border: none; z-index: 999;">
+        </iframe>
+      `;
+    }
+  </script>
+</head>
+<body>
+  <div id="top-bar" style="padding: 10px; background: #222; color: white;">
+    <h1 style="display: inline;">仙人チューブ</h1>
+    <input type="text" placeholder="動画を検索..." style="margin-left: 20px;">
+    <button onclick="playGame()">ゲーム</button>
+    <button onclick="showChat()">チャット</button>
+  </div>
+
+  <div id="main-content" style="padding: 20px; color: #333;">
+    <p>ここに動画や機能が表示されます。</p>
+  </div>
+</body>
+</html>
